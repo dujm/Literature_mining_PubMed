@@ -37,10 +37,13 @@
 ###### I only need the 1st author 
 ###### select first two of each vector in list
     at <- Author(EUtilsGet(res))
+    
 ###### extract first row of each list
     at1 <-lapply(at, `[[`, 1)
+    
 ###### extract first element of each row
     at_first<-lapply(at1, `[[`, 1)
+    
 ###### format as dataframe, convert row to colomn using transpose, t()
     at_first_row <- as.data.frame(at_first)
     at_first_column <- t(at_first_row)                              
