@@ -9,18 +9,21 @@
     install.packages(RISmed)
 
     
-##### 2. Define searching by keywords(e.g. PTEN), database (pubmed), number (e.g. 500)
+##### 2. Define searching 
+###### Use keywords(e.g. PTEN), database (pubmed), number (e.g. 500)
     library(RISmed)
     
     res <- EUtilsSummary("PTEN", type="esearch", db="pubmed", retmax=500) 
     
     QueryCount(res) 
 
-##### 3. Download results of a query for any database of the National Center for Biotechnology Information
+
+##### 3. Download results of a query 
     EUtilsGet(res,type="efetch",db="pubmed")
 
 ###### Check summary of query
     summary(res)
+
 
 ##### 4. Collect information for output file
 ###### title of literature
@@ -48,7 +51,6 @@
 ###### format as dataframe, convert row to colomn using transpose, t()
     at_first_row <- as.data.frame(at_first)
     at_first_column <- t(at_first_row)                              
-
 
 
 ##### 5. Write output to csv
