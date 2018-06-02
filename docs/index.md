@@ -18,22 +18,23 @@
 ##### Download results of a query for any database of the National Center for Biotechnology Information
     EUtilsGet(res,type="efetch",db="pubmed")
 
-##### Check summary of query
+###### Check summary of query
     summary(res)
 
-##### title of literature
+
+###### title of literature
     t<-ArticleTitle(EUtilsGet(res))
 
-##### abstract
+###### abstract
     a <-AbstractText(EUtilsGet(res))
     
-##### pubmed date, title abstract year
+###### pubmed date, title abstract year
     yta<-list(y,t,a)
     
-##### year 
+###### year 
     y <- YearPubmed(EUtilsGet(res))
 
-##### I only need the 1st author 
+###### I only need the 1st author 
 ###### select first two of each vector in list
     at <- Author(EUtilsGet(res))
 ###### extract first row of each list
