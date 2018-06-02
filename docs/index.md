@@ -1,5 +1,5 @@
-# Automatic downloading literature from PubMed using R
-https://cran.r-project.org/web/packages/RISmed/RISmed.pdf
+# Extract bibliographic content from the National Center for Biotechnology Information (NCBI) databases, including PubMed
+##### https://cran.r-project.org/web/packages/RISmed/index.html
 
     install.packages(RISmed)
     library(RISmed)
