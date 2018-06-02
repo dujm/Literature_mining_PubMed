@@ -1,36 +1,36 @@
 # Extract bibliographic content from the National Center for Biotechnology Information (NCBI) databases, including PubMed
-##### https://cran.r-project.org/web/packages/RISmed/index.html
+#### https://cran.r-project.org/web/packages/RISmed/index.html
 
     install.packages(RISmed)
     library(RISmed)
     
-##### define searching 
+#### define searching 
     res <- EUtilsSummary("PTEN", type="esearch", db="pubmed", retmax=500)
     
     QueryCount(res) 
 
-###### Download results of a query for any database of the National Center for Biotechnology Information
+#### Download results of a query for any database of the National Center for Biotechnology Information
     EUtilsGet(res,type="efetch",db="pubmed")
 
-###### summary
+#### summary
     summary(res)
 
-######  Download results of a query for any database of the National Center for Biotechnology Information
+####  Download results of a query for any database of the National Center for Biotechnology Information
     EUtilsGet(res,type="efetch",db="pubmed")
 
-###### title
+#### title
     t<-ArticleTitle(EUtilsGet(res))
 
-###### abstract
+#### abstract
     a <-AbstractText(EUtilsGet(res))
     
-###### pubmed date, title abstract year
+#### pubmed date, title abstract year
     yta<-list(y,t,a)
     
-###### year YearPpublish signature(object = "Medline"):YearEpublish
+#### year YearPpublish signature(object = "Medline"):YearEpublish
     y <- YearPubmed(EUtilsGet(res))
 
-###### I only need the 1st author 
+#### I only need the 1st author 
 ###### select first two of each vector in list
     at <- Author(EUtilsGet(res))
 ###### extract first row of each list
@@ -43,6 +43,6 @@
 
 
 
-##### Write output to csv
+#### Write output to csv
     full <- data.frame('1stAuthor'= at_first_column,'year' = y, 'Title'=t,'Abstract'=a)
     write.csv(full, file = "PTEN_pubmed_full.csv",row.names = FALSE)
