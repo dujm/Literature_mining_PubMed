@@ -4,27 +4,24 @@
 
 
 ##### Install RISmedpackage 
-##### https://cran.r-project.org/web/packages/RISmed/index.html
+##### Documentation https://cran.r-project.org/web/packages/RISmed/index.html
     install.packages(RISmed)
 
     
-##### Define searching 
+##### Define searching by keywords(e.g. PTEN), database (pubmed), number (e.g. 500)
     library(RISmed)
     
-    res <- EUtilsSummary("PTEN", type="esearch", db="pubmed", retmax=500)
+    res <- EUtilsSummary("PTEN", type="esearch", db="pubmed", retmax=500) 
     
     QueryCount(res) 
 
 ##### Download results of a query for any database of the National Center for Biotechnology Information
     EUtilsGet(res,type="efetch",db="pubmed")
 
-##### summary
+##### Check summary of query
     summary(res)
 
-#####  Download results of a query for any database of the National Center for Biotechnology Information
-    EUtilsGet(res,type="efetch",db="pubmed")
-
-##### title
+##### title of literature
     t<-ArticleTitle(EUtilsGet(res))
 
 ##### abstract
