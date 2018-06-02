@@ -1,7 +1,6 @@
 ### Extract bibliographic content from PubMed
 
 
-#### 
 
 
 ##### Install RISmedpackage 
