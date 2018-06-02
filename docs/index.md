@@ -3,7 +3,7 @@
 
 
 
-##### 1. Install RISmedpackage 
+##### 1. Install RIS medpackage in R
 ###### Documentation
 ###### https://cran.r-project.org/web/packages/RISmed/index.html
     install.packages(RISmed)
