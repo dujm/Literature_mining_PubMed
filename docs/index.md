@@ -6,9 +6,11 @@
 ##### Install RISmedpackage 
 ##### https://cran.r-project.org/web/packages/RISmed/index.html
     install.packages(RISmed)
-    library(RISmed)
+
     
 ##### Define searching 
+    library(RISmed)
+    
     res <- EUtilsSummary("PTEN", type="esearch", db="pubmed", retmax=500)
     
     QueryCount(res) 
