@@ -4,7 +4,8 @@
 
 
 ##### Install RISmedpackage 
-##### Documentation https://cran.r-project.org/web/packages/RISmed/index.html
+###### Documentation
+###### https://cran.r-project.org/web/packages/RISmed/index.html
     install.packages(RISmed)
 
     
