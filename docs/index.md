@@ -1,28 +1,27 @@
 
 ####  [Back](https://dujm.github.io/pages/datascience.html)
 
-<br>
 
 ## How to download PubMed literature into a csv table in 5 steps?
 
-<br>
+
 
 #### 1. Install RIS medpackage in R
 ###### [Documentation](https://cran.r-project.org/web/packages/RISmed/index.html)
     install.packages(RISmed)
-<br>
+
 
 #### 2. Define a query
 ###### Use keywords(e.g. PTEN), database (pubmed), limit of the number of results (e.g. 500)
     library(RISmed)
     res <- EUtilsSummary("PTEN", type="esearch", db="pubmed", retmax=500)
-<br>
+
 
 #### 3. Download the results of your query
     EUtilsGet(res,type="efetch",db="pubmed")
     QueryCount(res) # No. of results returned
     summary(res) # Summary of your query
-<br>  
+ 
 
 #### 4. Gather information for your output file
     y <- YearPubmed(EUtilsGet(res)) # Year of publication
