@@ -35,7 +35,7 @@
     at_first<-lapply(at1, `[[`, 1) # Extract the first element of each row
     at_first_row <- as.data.frame(at_first) # Format as dataframe
     at_first_column <- t(at_first_row)  # Convert row to column using transpose t()  
-<br>  
+ 
 
 #### 5. Output to a .csv file     
     myresults <- data.frame('1stAuthor'= at_first_column,'year' = y, 'Title'=t,'Abstract'=a)  
