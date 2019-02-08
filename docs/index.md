@@ -1,58 +1,42 @@
-### Extract bibliographic content from PubMed
 
+####  [Back](https://dujm.github.io/pages/datascience.html)
 
+<br>
 
+## How to download PubMed literature into a csv table in 5 steps?
 
-##### 1. Install RIS medpackage in R
-###### Documentation
-###### https://cran.r-project.org/web/packages/RISmed/index.html
+<br>
+
+#### 1. Install RIS medpackage in R
+###### [Documentation](https://cran.r-project.org/web/packages/RISmed/index.html)
     install.packages(RISmed)
+<br>
 
-    
-##### 2. Define searching 
-###### Use keywords(e.g. PTEN), database (pubmed), number (e.g. 500)
+#### 2. Define a query
+###### Use keywords(e.g. PTEN), database (pubmed), limit of the number of results (e.g. 500)
     library(RISmed)
-    
-    res <- EUtilsSummary("PTEN", type="esearch", db="pubmed", retmax=500) 
-    
-    QueryCount(res) 
+    res <- EUtilsSummary("PTEN", type="esearch", db="pubmed", retmax=500)
+<br>
 
-
-##### 3. Download results of a query 
+#### 3. Download the results of your query
     EUtilsGet(res,type="efetch",db="pubmed")
+    QueryCount(res) # No. of results returned
+    summary(res) # Summary of your query
+<br>  
 
-###### Check summary of query
-    summary(res)
-
-
-##### 4. Collect information for output file
-###### title of literature
-    t<-ArticleTitle(EUtilsGet(res))
-
-###### abstract
-    a <-AbstractText(EUtilsGet(res))
-    
-###### pubmed date, title abstract year
-    yta<-list(y,t,a)
-    
-###### year 
-    y <- YearPubmed(EUtilsGet(res))
-
-###### I only need the 1st author 
-###### select first two of each vector in list
+#### 4. Gather information for your output file
+    y <- YearPubmed(EUtilsGet(res)) # Year of publication
+    t<-ArticleTitle(EUtilsGet(res)) # Title
+    a <-AbstractText(EUtilsGet(res)) # Abstract
+  
+##### Authors
     at <- Author(EUtilsGet(res))
-    
-###### extract first row of each list
-    at1 <-lapply(at, `[[`, 1)
-    
-###### extract first element of each row
-    at_first<-lapply(at1, `[[`, 1)
-    
-###### format as dataframe, convert row to colomn using transpose, t()
-    at_first_row <- as.data.frame(at_first)
-    at_first_column <- t(at_first_row)                              
+    at1 <-lapply(at, `[[`, 1) # Extract the first row of each list because I only need the 1st author
+    at_first<-lapply(at1, `[[`, 1) # Extract the first element of each row
+    at_first_row <- as.data.frame(at_first) # Format as dataframe
+    at_first_column <- t(at_first_row)  # Convert row to column using transpose t()  
+<br>  
 
-
-##### 5. Write output to csv
-    full <- data.frame('1stAuthor'= at_first_column,'year' = y, 'Title'=t,'Abstract'=a)
-    write.csv(full, file = "PTEN_pubmed_full.csv",row.names = FALSE)
+#### 5. Output to a .csv file     
+    myresults <- data.frame('1stAuthor'= at_first_column,'year' = y, 'Title'=t,'Abstract'=a)  
+    write.csv(myresults, file = "pubmed_literature.csv",row.names = FALSE)  
