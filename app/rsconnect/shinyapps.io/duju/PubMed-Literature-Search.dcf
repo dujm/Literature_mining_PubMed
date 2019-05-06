@@ -1,0 +1,12 @@
+name: PubMed-Literature-Search
+title: PubMed-Literature-Search
+username:
+account: duju
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 913386
+bundleId: 2065086
+url: https://duju.shinyapps.io/PubMed-Literature-Search/
+when: 1557180709.81603
+asMultiple: FALSE
+asStatic: FALSE
