@@ -1,12 +1,11 @@
 
-####  [Back](https://dujm.github.io/pages/datascience.html)
 
 
 ## How to download PubMed literature into a csv table in 5 steps?
 ### I. Try my online app
  * URL: https://duju.shinyapps.io/PubMed-Literature-Search
-  
-![app](assets/ds-pubmed.png)
+
+ ![app](assets/pubmed.png)
 
 ### II. Download PubMed content using RISmed package
 #### 1. Install RIS medpackage in R
