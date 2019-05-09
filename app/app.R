@@ -1,3 +1,11 @@
+'
+R version 3.4.3 (2017-11-30)
+attached base packages:
+  [1] stats     graphics  grDevices utils     datasets  methods   base     
+other attached packages:
+  [1] DT_0.4            RISmed_2.1.7      shinythemes_1.1.1 shiny_1.1.0   
+'
+########################################################################
 library(shiny)
 library(shinythemes)
 library(RISmed)
@@ -5,7 +13,8 @@ library(DT)
 
 shinyApp(
   ui = fluidPage(
-                 titlePanel(h3("PubMed Literature Search",style = "margin:20px 60px") ,windowTitle = "PubMed Literature"),
+                 titlePanel(h3("PubMed Literature Search",style = "margin:20px 60px") ,
+                            windowTitle = "PubMed Literature"),
                  theme = shinytheme("journal"),
                  
                  
@@ -103,19 +112,21 @@ shinyApp(
         res <- EUtilsSummary(split_query, type="esearch", db="pubmed", mindate= start_date, maxdate=end_date, retmax=max_pub)
         print(res)
         EUtilsGet(res,type="efetch",db="pubmed")
-        QueryCount(res) # No. of results returned
-        summary(res) # Summary of your query
-        y <- YearPubmed(EUtilsGet(res)) # Year of publication
-        t<-ArticleTitle(EUtilsGet(res)) # Title
-        a <-AbstractText(EUtilsGet(res)) # Abstract
-        at <- Author(EUtilsGet(res))
-        at1 <-lapply(at, `[[`, 1) # Extract the first row of each list because I only need the 1st author
-        at_first<-lapply(at1, `[[`, 1) # Extract the first element of each row
-        at_first_row <- as.data.frame(at_first) # Format as dataframe
-        at_first_column <- t(at_first_row)  # Convert row to column using transpose t()  
-        myresults <- data.frame('Author'= at_first_column,'year' = y, 'Title'=t,'Abstract'=a) 
-        #print(myresults)
+        if (QueryCount(res) > 0){
+          summary(res) # Summary of your query
+          y <- YearPubmed(EUtilsGet(res)) # Year of publication
+          t<-ArticleTitle(EUtilsGet(res)) # Title
+          a <-AbstractText(EUtilsGet(res)) # Abstract
+          at <- Author(EUtilsGet(res))
+          at1 <-lapply(at, `[[`, 1) # Extract the first row of each list because I only need the 1st author
+          at_first<-lapply(at1, `[[`, 1) # Extract the first element of each row
+          at_first_row <- as.data.frame(at_first) # Format as dataframe
+          at_first_column <- t(at_first_row)  # Convert row to column using transpose t()  
+          myresults <- data.frame('Author'= at_first_column,'year' = y, 'Title'=t,'Abstract'=a)}
+        else{
+          myresults <- data.frame('Author'= 'None','year' = 'None', 'Title'='None','Abstract'='None')} 
         return(myresults)
+            
       }
     })
     
@@ -135,8 +146,6 @@ shinyApp(
                     
       ) %>%
         formatStyle(columns = 1:4,color = "black")
-      
-      
     })
   }
 
